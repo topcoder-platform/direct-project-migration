@@ -1,25 +1,26 @@
 const models = require('../models')
 // const { AGREE_FOR_DOCUSIGN_TEMPLATE, ELECT_AGREEABLE } = require('../../app-constants')
-// const logger = require('../util/logger')
-const moment = require('moment')
+const logger = require('../util/logger')
+// const moment = require('moment')
 const Project = models.Project
 const { Op } = require('sequelize')
 
-async function createProject (directProjectId, name, status) {
-  const project = await Project.create({
-    directProjectId,
-    name,
+async function createProject (projectObj) {
+  const obj = {
+    directProjectId: projectObj.directProjectId,
+    name: projectObj.name,
     type: 'app_dev',
     status: 'completed',
-    createdAt: moment(),
-    createdBy: 40152856,
-    updatedAt: moment(),
-    updatedBy: 40152856,
-    lastActivityAt: moment(),
-    lastActivityUserId: 40152856
-  })
+    createdAt: projectObj.createdAt,
+    createdBy: projectObj.createdBy,
+    updatedAt: projectObj.updatedAt,
+    updatedBy: projectObj.updatedBy,
+    lastActivityAt: projectObj.lastActivityAt,
+    lastActivityUserId: projectObj.lastActivityUserId
+  }
+  logger.debug('Creating', obj)
+  const project = await Project.create(obj)
   return project
-  // logger.info('Create Project', { directProjectId, name })
 }
 
 async function getV5ProjectIdsForDirectProjectIds (arrayOfDirectProjectIds) {

@@ -1,5 +1,5 @@
 const _ = require('lodash')
-// const logger = require('../util/logger')
+const logger = require('../util/logger')
 const { executeQueryAsync } = require('../util/informixWrapper')
 
 /**
@@ -16,7 +16,13 @@ function getProjectsFromIfx (skip, offset, filter) {
   const sql = `
     SELECT  ${limitOffset}
       DISTINCT(project_id) as directProjectId,
-      name
+      name,
+      create_date,
+      modify_date,
+      modify_date as lastactivityat,
+      user_id as createdby,
+      user_id as updatedby,
+      user_id as lastactivityuserid
     FROM
       tc_direct_project p`
 
@@ -40,7 +46,7 @@ async function execQuery (sql, ids, order) {
   if (_.isUndefined(order)) {
     order = ''
   }
-  // console.log(`Query - Executing: ${sql} ${filter} ${order}`)
+  logger.debug(`Query - Executing: ${sql} ${filter} ${order}`)
   // const result = connection.query(`${sql} ${filter} ${order}`)
   return executeQueryAsync('tcs_catalog', `${sql} ${filter} ${order}`)
 }

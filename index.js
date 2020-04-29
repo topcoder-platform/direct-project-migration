@@ -1,18 +1,16 @@
 /**
- * Populate the ChallengeMigrationProgress based on data that was already migrated
+ * Populate the Projects V5 Table with V4 Projects
  */
-global.Promise = require('bluebird');
-
-const config = require('config');
-const util = require('util');
-const _ = require('lodash');
-// const { getOrCreateWorkingChallenge } = require('../actions')
+global.Promise = require('bluebird')
+const config = require('config')
+const util = require('util')
+const _ = require('lodash')
 const informixProjectService = require('./services/informixProjectService')
 const postgresProjectService = require('./services/postgresProjectService')
-const logger = require('./util/logger');
+const logger = require('./util/logger')
 
 const migrate = async () => {
-  const offset = config.get('BATCH_SIZE');
+  const offset = config.get('BATCH_SIZE')
   let finish = false
   let skip = 0
   let batch = 1
@@ -28,13 +26,22 @@ const migrate = async () => {
 
         // logger.info('Create Projects for These IDs', filteredArray)
         for (const project of filteredArray) {
-          postgresProjectService.createProject(project.directprojectid, project.name)
+          postgresProjectService.createProject({
+            name: project.name,
+            directProjectId: project.directprojectid,
+            createdAt: project.create_date,
+            createdBy: project.createdby,
+            updatedAt: project.modify_date,
+            updatedBy: project.updatedby,
+            lastActivityAt: project.lastactivityat,
+            lastActivityUserId: project.lastactivityuserid
+          })
         }
       } else {
         finish = true
       }
     } catch (e) {
-      logger.debug(util.inspect(e))
+      logger.error(util.inspect(e))
       finish = true
       throw e
     }
