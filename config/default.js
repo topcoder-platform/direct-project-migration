@@ -8,7 +8,7 @@ module.exports = {
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
 
-  LOG_LEVEL: process.env.LOG_LEVEL || 'debug',
+  LOG_LEVEL: process.env.LOG_LEVEL || 'warn',
   PROJECTS_API_URL: process.env.PROJECTS_API_URL || 'https://api.topcoder-dev.com/v5/projects',
 
   POSTGRES: {

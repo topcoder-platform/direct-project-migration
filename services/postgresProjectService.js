@@ -8,6 +8,7 @@ const { Op } = require('sequelize')
 async function createProject (projectObj) {
   const obj = {
     directProjectId: projectObj.directProjectId,
+    billingAccountId: projectObj.billingAccountId,
     name: projectObj.name,
     type: 'app_dev',
     status: 'completed',

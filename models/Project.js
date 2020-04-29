@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     directProjectId: { type: DataTypes.INTEGER, allowNull: false },
+    billingAccountId: { type: DataTypes.STRING, allowNull: true },
     name: { type: DataTypes.STRING, allowNull: true },
     type: { type: DataTypes.STRING, allowNull: false },
     status: { type: DataTypes.STRING, allowNull: false },

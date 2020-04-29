@@ -15,16 +15,18 @@ function getProjectsFromIfx (skip, offset, filter) {
   limitOffset += !_.isUndefined(offset) && offset > 0 ? ' first ' + offset : ''
   const sql = `
     SELECT  ${limitOffset}
-      DISTINCT(project_id) as directProjectId,
-      name,
-      create_date,
-      modify_date,
-      modify_date as lastactivityat,
-      user_id as createdby,
-      user_id as updatedby,
-      user_id as lastactivityuserid
+      DISTINCT(p.project_id) as directProjectId,
+      p.name,
+      (SELECT MAX(dpa1.billing_account_id) FROM direct_project_account dpa1 WHERE dpa1.project_id = p.project_id) as billing_account_id,
+      p.create_date,
+      p.modify_date,
+      p.modify_date as lastactivityat,
+      p.user_id as createdby,
+      p.user_id as updatedby,
+      p.user_id as lastactivityuserid
     FROM
-      tc_direct_project p`
+      tc_direct_project p
+      LEFT JOIN direct_project_account dpa on p.project_id = dpa.project_id`
 
   return execQuery(sql, 'order by p.project_id')
 }

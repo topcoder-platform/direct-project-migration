@@ -29,6 +29,7 @@ const migrate = async () => {
           postgresProjectService.createProject({
             name: project.name,
             directProjectId: project.directprojectid,
+            billingAccountId: project.billing_account_id,
             createdAt: project.create_date,
             createdBy: project.createdby,
             updatedAt: project.modify_date,
