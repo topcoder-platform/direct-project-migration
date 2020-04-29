@@ -1,0 +1,30 @@
+{
+  "name": "project-migration-tool",
+  "version": "1.0.0",
+  "description": "Creates v5 Projects for Direct Projects",
+  "repository": "",
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "config": "^3.1.0",
+    "express": "^4.17.1",
+    "http-aws-es": "^6.0.0",
+    "informix-wrapper": "git+https://github.com/appirio-tech/informix-wrapper.git#less-logs",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "pg": "^8.0.3",
+    "sequelize": "^5.21.7",
+    "superagent": "^5.2.1",
+    "tc-core-library-js": "appirio-tech/tc-core-library-js.git#v2.6.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "standard": "^14.1.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "lint": "standard",
+    "lint:fix": "standard --fix"
+  },
+  "author": "TCSCODER",
+  "license": ""
+}

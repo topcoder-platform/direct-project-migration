@@ -1,0 +1,13 @@
+version: "3"
+services:
+  db:
+    environment:
+      - POSTGRES_PASSWORD=test
+    image: "postgres:11"
+    container_name: "project_migration"
+    ports:
+      - "54320:5432"
+    volumes:
+      - project-migration:/var/lib/postgresql/data
+volumes:
+  project-migration:
