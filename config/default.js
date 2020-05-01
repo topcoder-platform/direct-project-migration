@@ -37,5 +37,7 @@ module.exports = {
     // AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY || 'FAKE_SECRET_ACCESS_KEY', // aws secret key
     AWS_REGION: process.env.AWS_REGION || 'ap-northeast-1', // aws region
     IS_LOCAL_DB: process.env.IS_LOCAL_DB ? process.env.IS_LOCAL_DB === 'true' : true, // true or uninitialize if we use local instance
-  }
+  },
+
+  DIRECT_PROJECT_TEMPLATE_ID: parseInt(process.env.DIRECT_PROJECT_TEMPLATE_ID, 10)
 }

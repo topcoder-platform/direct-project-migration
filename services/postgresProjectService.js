@@ -1,9 +1,12 @@
+const config = require('config')
 const models = require('../models')
 // const { AGREE_FOR_DOCUSIGN_TEMPLATE, ELECT_AGREEABLE } = require('../../app-constants')
 const logger = require('../util/logger')
 // const moment = require('moment')
 const Project = models.Project
 const { Op } = require('sequelize')
+
+const DIRECT_PROJECT_TEMPLATE_ID = config.get('DIRECT_PROJECT_TEMPLATE_ID')
 
 async function createProject (projectObj) {
   const obj = {
@@ -12,6 +15,8 @@ async function createProject (projectObj) {
     name: projectObj.name,
     type: 'app_dev',
     status: 'completed',
+    templateId: DIRECT_PROJECT_TEMPLATE_ID,
+    version: 'v3',
     createdAt: projectObj.createdAt,
     createdBy: projectObj.createdBy,
     updatedAt: projectObj.updatedAt,
