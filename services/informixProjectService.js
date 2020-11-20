@@ -28,7 +28,7 @@ function getProjectsFromIfx (skip, offset, filter) {
       tc_direct_project p
       LEFT JOIN direct_project_account dpa on p.project_id = dpa.project_id`
 
-  return execQuery(sql, 'order by p.project_id')
+  return execQuery(sql, 'order by p.project_id ASC')
 }
 
 /**
@@ -39,18 +39,13 @@ function getProjectsFromIfx (skip, offset, filter) {
  * @param {Array} ids Array of challenge to fetch
  * @param {String} order addition sql for ordering
  */
-async function execQuery (sql, ids, order) {
-  let filter = ''
-
-  if (!_.isUndefined(ids) && _.isArray(ids)) {
-    filter = `and p.project_id in (${ids.join()})`
-  }
+async function execQuery (sql, order) {
   if (_.isUndefined(order)) {
     order = ''
   }
-  logger.debug(`Query - Executing: ${sql} ${filter} ${order}`)
-  // const result = connection.query(`${sql} ${filter} ${order}`)
-  return executeQueryAsync('tcs_catalog', `${sql} ${filter} ${order}`)
+  logger.debug(`Query - Executing: ${sql} ${order}`)
+  // const result = connection.query(`${sql} ${order}`)
+  return executeQueryAsync('tcs_catalog', `${sql} ${order}`)
 }
 
 module.exports = {

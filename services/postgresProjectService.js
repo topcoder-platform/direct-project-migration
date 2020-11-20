@@ -11,7 +11,7 @@ const DIRECT_PROJECT_TEMPLATE_ID = config.get('DIRECT_PROJECT_TEMPLATE_ID')
 async function createProject (projectObj) {
   const obj = {
     directProjectId: projectObj.directProjectId,
-    billingAccountId: projectObj.billingAccountId,
+    billingAccountId: projectObj.billingAccountId || null,
     name: projectObj.name,
     type: 'app_dev',
     status: 'completed',
@@ -24,7 +24,7 @@ async function createProject (projectObj) {
     lastActivityAt: projectObj.lastActivityAt,
     lastActivityUserId: projectObj.lastActivityUserId
   }
-  logger.debug('Creating', obj)
+  console.log(obj)
   const project = await Project.create(obj)
   return project
 }

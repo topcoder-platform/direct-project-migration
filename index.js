@@ -14,6 +14,7 @@ const migrate = async () => {
   let finish = false
   let skip = 0
   let batch = 1
+  let projectCount = 0
 
   while (!finish) {
     try {
@@ -26,6 +27,7 @@ const migrate = async () => {
 
         // logger.info('Create Projects for These IDs', filteredArray)
         for (const project of filteredArray) {
+          projectCount += 1
           postgresProjectService.createProject({
             name: project.name,
             directProjectId: project.directprojectid,
@@ -49,6 +51,7 @@ const migrate = async () => {
     skip += offset
     batch++
   }
+  console.log(`${projectCount} projects created`)
 }
 
 migrate().then(() => {
