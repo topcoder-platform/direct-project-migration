@@ -9,7 +9,7 @@
     "express": "^4.17.1",
     "http-aws-es": "^6.0.0",
     "informix-wrapper": "git+https://github.com/appirio-tech/informix-wrapper.git#less-logs",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "pg": "^8.0.3",
     "sequelize": "^5.21.7",
