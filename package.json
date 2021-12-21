@@ -11,7 +11,7 @@
     "informix-wrapper": "git+https://github.com/appirio-tech/informix-wrapper.git#less-logs",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "pg": "^8.0.3",
+    "pg": "^8.7.1",
     "sequelize": "^5.21.7",
     "superagent": "^5.2.1",
     "tc-core-library-js": "appirio-tech/tc-core-library-js.git#v2.6.2",
