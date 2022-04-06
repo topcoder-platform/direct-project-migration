@@ -10,7 +10,7 @@
     "http-aws-es": "^6.0.0",
     "informix-wrapper": "git+https://github.com/appirio-tech/informix-wrapper.git#less-logs",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "pg": "^8.0.3",
     "sequelize": "^5.21.7",
     "superagent": "^5.2.1",
